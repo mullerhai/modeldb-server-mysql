@@ -6,6 +6,9 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 import edu.mit.csail.db.ml.server.storage.metadata.MongoMetadataDb;
 import edu.mit.csail.db.ml.server.storage.metadata.MetadataDb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,6 +17,16 @@ import java.sql.SQLException;
  * This class contains logic for connecting to the database.
  */
 public class ContextFactory {
+
+  static {
+    try {
+      Class.forName("com.mysql.jdbc.Driver").newInstance();
+    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Create a database context that reflects a connection to a database.
    * @param username - The username to connect to the database.
@@ -24,16 +37,19 @@ public class ContextFactory {
    * @throws SQLException - Thrown if there are problems connecting to the database.
    * @throws IllegalArgumentException - Thrown if the dbType is unsupported.
    */
+  protected  final static Logger logger=LoggerFactory.getLogger(ContextFactory.class);
   public static DSLContext create(
     String username, 
     String password, 
     String jdbcUrl, 
     ModelDbConfig.DatabaseType dbType
     ) throws SQLException, IllegalArgumentException {
+    logger.info(jdbcUrl+" ****  "+username+"  "+password);
     Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
 
     switch (dbType) {
       case SQLITE: return DSL.using(conn, SQLDialect.SQLITE);
+      case MYSQL:return  DSL.using(conn,SQLDialect.MYSQL);
     }
 
     throw new IllegalArgumentException(

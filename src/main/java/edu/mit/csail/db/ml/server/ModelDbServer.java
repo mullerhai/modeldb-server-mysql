@@ -11,6 +11,8 @@ import jooq.sqlite.gen.tables.records.DataframeRecord;
 import modeldb.*;
 import org.apache.thrift.TException;
 import org.jooq.DSLContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,8 @@ import java.util.Map;
  * For documentation on the API methods, see the ModelDB.thrift file.
  */
 public class ModelDbServer implements ModelDBService.Iface {
+
+  protected  final Logger logger=LoggerFactory.getLogger(ModelDbServer.class);
   /**
    * The database context.
    */
@@ -122,10 +126,12 @@ public class ModelDbServer implements ModelDBService.Iface {
   }
 
   public ExperimentEventResponse storeExperimentEvent(ExperimentEvent ee) throws TException {
+    logger.info(ee.experiment.toString());
     return ExceptionWrapper.run(() -> ExperimentDao.store(ee, ctx));
   }
 
   public ExperimentRunEventResponse storeExperimentRunEvent(ExperimentRunEvent er) throws TException {
+    logger.info(er.experimentRun.toString());
     return ExceptionWrapper.run(() -> ExperimentRunDao.store(er, ctx));
   }
 

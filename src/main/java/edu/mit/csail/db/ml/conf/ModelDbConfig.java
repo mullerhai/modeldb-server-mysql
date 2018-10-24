@@ -21,7 +21,8 @@ public class ModelDbConfig {
    * the database) supports other relational databases like MySQL and PostgreSQL.
    */
   public enum DatabaseType {
-    SQLITE
+    SQLITE,
+    MYSQL
   }
 
   public enum MetadataDbType {
@@ -137,6 +138,7 @@ public class ModelDbConfig {
 
     switch (databaseType) {
       case "sqlite": this.dbType = DatabaseType.SQLITE; break;
+      case "mysql":this.dbType=DatabaseType.MYSQL;break;
       default: throw new IllegalArgumentException("Not a value databaseType");
     }
 

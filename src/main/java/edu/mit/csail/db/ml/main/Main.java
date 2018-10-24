@@ -2,6 +2,7 @@ package edu.mit.csail.db.ml.main;
 
 import edu.mit.csail.db.ml.conf.ModelDbConfig;
 import edu.mit.csail.db.ml.server.ModelDbServer;
+import edu.mit.csail.db.ml.util.ContextFactory;
 import modeldb.ModelDBService;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
@@ -10,6 +11,8 @@ import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 import org.apache.thrift.transport.TTransportFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main entry point of of the ModelDB Server.
@@ -18,11 +21,13 @@ import org.apache.thrift.transport.TTransportFactory;
  * (optional) --conf [path_to_conf_file]
  */
 public class Main {
+  protected  final static Logger logger=LoggerFactory.getLogger(Main.class);
   public static void main(String[] args) throws Exception {
     // Read the configuration. This uses the default configuration if no configuration is given in the
     // command line arguments.
     ModelDbConfig config = ModelDbConfig.parse(args);
 
+    logger.info(config.dbUser+config.dbType+config.dbPassword+config.jbdcUrl);
     // Attempt to launch the server.
     try {
       TServerTransport transport = new TServerSocket(config.thriftPort);
@@ -48,6 +53,7 @@ public class Main {
         .transportFactory(transportFactory)
         .minWorkerThreads(1)
         .maxWorkerThreads(100);
+      logger.info("begin");
       TThreadPoolServer server = new TThreadPoolServer(serverArgs);
 
       // Launch the server.

@@ -8,6 +8,8 @@ import org.jooq.DSLContext;
 import org.jooq.Record1;
 import org.jooq.Record2;
 import org.jooq.impl.DSL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
  * This class contains logic for reading and storing projects.
  */
 public class ProjectDao {
+
+  protected  final  static Logger logger=LoggerFactory.getLogger(Project.class);
   /**
    * Store a project in the database.
    * @param pr - The project.

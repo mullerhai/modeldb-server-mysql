@@ -7,6 +7,8 @@ import modeldb.ExperimentEvent;
 import modeldb.ExperimentEventResponse;
 import modeldb.ResourceNotFoundException;
 import org.jooq.DSLContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -21,13 +23,18 @@ public class ExperimentDao {
    * @param ctx - The database context.
    * @return A response indicating that the Experiment was stored.
    */
+  protected final static Logger logger=LoggerFactory.getLogger(ExperimentDao.class);
   public static ExperimentEventResponse store(ExperimentEvent expt, DSLContext ctx) {
     Experiment e = expt.experiment;
 
+    logger.info(e.toString());
+    logger.info("default: "+e.isDefault);
     // If the experiment is the default experiment, just read and return the default experiment for the
     // project.
     if (e.isDefault) {
+      logger.info(String.valueOf(e.projectId));
       int defaultExperiment = ProjectDao.getDefaultExperiment(e.projectId, ctx);
+      logger.info("default id from query : "+defaultExperiment );
       return new ExperimentEventResponse(defaultExperiment);
     }
 
@@ -42,7 +49,7 @@ public class ExperimentDao {
 
     // Store an entry in the Experiment table and return a response.
     eRec = ctx.newRecord(Tables.EXPERIMENT);
-    eRec.setId(e.id < 0 ? null : e.id);
+    eRec.setId(e.id < -2 ? null : e.id);
     eRec.setName(e.name);
     eRec.setDescription(e.description);
     eRec.setProject(e.projectId);

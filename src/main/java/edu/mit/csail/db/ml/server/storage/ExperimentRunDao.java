@@ -8,6 +8,8 @@ import org.jooq.DSLContext;
 import org.jooq.Record1;
 import org.jooq.Record2;
 import edu.mit.csail.db.ml.server.storage.metadata.MetadataDb;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
  * This class contains logic for reading and storing experiment runs.
  */
 public class ExperimentRunDao {
+
+  protected  final  static Logger logger=LoggerFactory.getLogger(ExperimentRunDao.class);
   /**
    * Store an experiment run in the database.
    * @param erun - The experiment run.
@@ -31,13 +35,15 @@ public class ExperimentRunDao {
     // ExperimentRun ID is unique however and so we use that unique id.
     ExperimentRun er = erun.experimentRun;
     ExperimentrunRecord erRec = ctx.newRecord(Tables.EXPERIMENTRUN);
-    erRec.setId(er.id < 0 ? null : er.id);
+    logger.info(" get ExperimentrunRecord    "+erRec.toString());
+    erRec.setId(er.id < -2 ? null : er.id);
     erRec.setExperiment(er.experimentId);
     erRec.setDescription(er.description);
     erRec.setCreated(new Timestamp((new Date()).getTime()));
     if (er.isSetSha()) {
       erRec.setSha(er.getSha());
     }
+    logger.info("ex run  store data is "+erRec);
     erRec.store();
     return new ExperimentRunEventResponse(erRec.getId());
   }
