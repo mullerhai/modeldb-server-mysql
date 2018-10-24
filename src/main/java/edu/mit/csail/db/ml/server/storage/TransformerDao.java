@@ -2,10 +2,10 @@ package edu.mit.csail.db.ml.server.storage;
 
 import edu.mit.csail.db.ml.conf.ModelDbConfig;
 import edu.mit.csail.db.ml.util.Pair;
+import edu.mit.csail.db.ml.server.storage.metadata.MetadataDb;
 import jooq.sqlite.gen.Tables;
 import jooq.sqlite.gen.tables.records.FiteventRecord;
 import jooq.sqlite.gen.tables.records.TransformerRecord;
-import edu.mit.csail.db.ml.server.storage.metadata.MetadataDb;
 import modeldb.*;
 import org.jooq.DSLContext;
 import org.jooq.Record1;

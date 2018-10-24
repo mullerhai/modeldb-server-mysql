@@ -44,7 +44,7 @@ public class ContextFactory {
     String jdbcUrl, 
     ModelDbConfig.DatabaseType dbType
     ) throws SQLException, IllegalArgumentException {
-    logger.info(jdbcUrl+" ****  "+username+"  "+password);
+    logger.info("Read the mysql connect string :"+jdbcUrl+" ****  "+username+" ***  "+password);
     Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
 
     switch (dbType) {

@@ -32,7 +32,7 @@ public class MetricEventDao {
     meRec.setTransformer(t.getId());
     meRec.setDf(df.getId());
     meRec.setMetrictype(me.metricType);
-    meRec.setMetricvalue(Double.valueOf(me.metricValue).floatValue());
+    meRec.setMetricvalue(Double.valueOf(me.metricValue));
     meRec.setExperimentrun(me.experimentRunId);
     meRec.store();
 

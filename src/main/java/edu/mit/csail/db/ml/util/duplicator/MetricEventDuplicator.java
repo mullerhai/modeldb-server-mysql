@@ -7,7 +7,7 @@ import org.jooq.InsertValuesStep6;
 import org.jooq.Query;
 
 public class MetricEventDuplicator extends Duplicator<MetriceventRecord> {
-  InsertValuesStep6<MetriceventRecord, Integer, Integer, Integer, String, Float, Integer> query;
+  InsertValuesStep6<MetriceventRecord, Integer, Integer, Integer, String, Double, Integer> query;
 
   public MetricEventDuplicator(DSLContext ctx) {
     init(ctx);

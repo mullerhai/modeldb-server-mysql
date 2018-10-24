@@ -175,7 +175,7 @@ paramValue text NOT NULL,
 -- Leave Min and Max NULL for non-numerical hyperparameters
 paramMinValue FLOAT,
 -- The maximum value allowed for this hyperparameter
-paramMaxValue FLOAT,
+paramMaxValue  Double,
 -- The ExperimentRun that contains this hyperparameter
 experimentRun int  NOT NULL,
 foreign key(experimentRun )  REFERENCES ExperimentRun(id)  

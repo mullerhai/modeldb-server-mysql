@@ -36,7 +36,7 @@ public class ExperimentRunDao {
     ExperimentRun er = erun.experimentRun;
     ExperimentrunRecord erRec = ctx.newRecord(Tables.EXPERIMENTRUN);
     logger.info(" get ExperimentrunRecord    "+erRec.toString());
-    erRec.setId(er.id < -2 ? null : er.id);
+    erRec.setId(er.id < -0 ? null : er.id);
     erRec.setExperiment(er.experimentId);
     erRec.setDescription(er.description);
     erRec.setCreated(new Timestamp((new Date()).getTime()));
@@ -45,6 +45,7 @@ public class ExperimentRunDao {
     }
     logger.info("ex run  store data is "+erRec);
     erRec.store();
+    logger.info("experimentRun store finish");
     return new ExperimentRunEventResponse(erRec.getId());
   }
 

@@ -13,7 +13,7 @@ public class DataFrameSplitDuplicator extends Duplicator<DataframesplitRecord> {
 //  weight FLOAT NOT NULL,
 //  dataFrameId INTEGER REFERENCES DataFrame NOT NULL,
 //  experimentRun INTEGER REFERENCES ExperimentRun NOT NULL
-  InsertValuesStep5<DataframesplitRecord, Integer, Integer, Float, Integer, Integer> query;
+  InsertValuesStep5<DataframesplitRecord, Integer, Integer, Double, Integer, Integer> query;
 
   public DataFrameSplitDuplicator(DSLContext ctx) {
     init(ctx);

@@ -53,7 +53,7 @@ public class RandomSplitEventDao {
         DataframesplitRecord splRec = ctx.newRecord(Tables.DATAFRAMESPLIT);
         splRec.setId(null);
         splRec.setSpliteventid(rseRec.getId());
-        splRec.setWeight(rse.weights.get(ind).floatValue());
+        splRec.setWeight(rse.weights.get(ind));
         splRec.setDataframeid(splitDfs.get(ind).getId());
         splRec.setExperimentrun(rse.experimentRunId);
         splRec.store();

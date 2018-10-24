@@ -6,8 +6,6 @@ import org.jooq.DSLContext;
 import org.jooq.InsertValuesStep5;
 import org.jooq.Query;
 
-import java.util.Set;
-
 public class TransformerDuplicator extends Duplicator<TransformerRecord> {
   InsertValuesStep5<TransformerRecord, Integer, String, String, Integer, String> query;
 

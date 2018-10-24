@@ -13,7 +13,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static jooq.sqlite.gen.Tables.DATAFRAME;
 import static jooq.sqlite.gen.Tables.TRANSFORMEVENT;
 
 /**

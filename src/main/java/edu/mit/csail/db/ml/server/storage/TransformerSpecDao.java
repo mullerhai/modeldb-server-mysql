@@ -7,10 +7,13 @@ import modeldb.HyperParameter;
 import modeldb.ResourceNotFoundException;
 import modeldb.TransformerSpec;
 import org.jooq.DSLContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class TransformerSpecDao {
+  protected  final static Logger logger =LoggerFactory.getLogger(TransformerSpecDao.class);
   public static TransformerspecRecord store(TransformerSpec s, int experimentId, DSLContext ctx) {
     TransformerspecRecord rec = ctx
       .selectFrom(Tables.TRANSFORMERSPEC)
@@ -29,14 +32,15 @@ public class TransformerSpecDao {
     sRec.store();
 
     s.hyperparameters.forEach(hp -> {
+      logger.info(hp.toString());
       HyperparameterRecord hpRec = ctx.newRecord(Tables.HYPERPARAMETER);
       hpRec.setId(null);
       hpRec.setSpec(sRec.getId());
       hpRec.setParamname(hp.name);
       hpRec.setParamtype(hp.type);
       hpRec.setParamvalue(hp.value);
-      hpRec.setParamminvalue(Double.valueOf(hp.min).floatValue());
-      hpRec.setParammaxvalue(Double.valueOf(hp.max).floatValue());
+      hpRec.setParamminvalue(Double.valueOf(hp.min));
+      hpRec.setParammaxvalue(Double.valueOf(hp.max/1000));
       hpRec.setExperimentrun(experimentId);
       hpRec.store();
       hpRec.getId();

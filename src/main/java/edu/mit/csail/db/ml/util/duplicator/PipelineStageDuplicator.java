@@ -4,7 +4,6 @@ package edu.mit.csail.db.ml.util.duplicator;
 import jooq.sqlite.gen.Tables;
 import jooq.sqlite.gen.tables.records.PipelinestageRecord;
 import org.jooq.DSLContext;
-import org.jooq.InsertValuesStep4;
 import org.jooq.InsertValuesStep6;
 import org.jooq.Query;
 

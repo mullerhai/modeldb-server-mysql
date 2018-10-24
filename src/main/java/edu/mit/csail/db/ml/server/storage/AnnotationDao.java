@@ -3,7 +3,6 @@ package edu.mit.csail.db.ml.server.storage;
 import jooq.sqlite.gen.Tables;
 import jooq.sqlite.gen.tables.records.AnnotationRecord;
 import jooq.sqlite.gen.tables.records.AnnotationfragmentRecord;
-
 import modeldb.AnnotationEvent;
 import modeldb.AnnotationEventResponse;
 import modeldb.AnnotationFragment;

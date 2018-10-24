@@ -15,7 +15,7 @@ import com.mongodb.WriteResult;
 import com.mongodb.WriteConcernException;
 import org.joda.time.DateTime;
 
-public class MongoMetadataDb implements MetadataDb {
+public class MongoMetadataDb implements edu.mit.csail.db.ml.server.storage.metadata.MetadataDb {
 
   private MongoClient mongoClient;
   private DB metadataDb;

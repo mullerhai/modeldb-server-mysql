@@ -8,7 +8,7 @@ import org.jooq.InsertValuesStep8;
 import org.jooq.Query;
 
 public class HyperParameterDuplicator extends Duplicator<HyperparameterRecord> {
-  InsertValuesStep8<HyperparameterRecord, Integer, Integer, String, String, String, Float, Float, Integer> query;
+  InsertValuesStep8<HyperparameterRecord, Integer, Integer, String, String, String, Double, Double, Integer> query;
 
   public HyperParameterDuplicator(DSLContext ctx) {
     init(ctx);

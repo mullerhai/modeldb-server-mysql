@@ -2,10 +2,10 @@
 <configuration>
   <jdbc>
     <driver>com.mysql.jdbc.Driver</driver>
-    <url>jdbc:mysql://localhost:3306/modeldb?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE&amp;useSSL=false&amp;serverTimezone=UTC</url>
+    <url>jdbc:mysql://localhost:3306/modeldb_test?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE&amp;useSSL=false&amp;serverTimezone=UTC</url>
     <user>muller</user>
     <password>7104</password>
-    <database>modeldb</database>
+    <database>modeldb_test</database>
   </jdbc>
 
   <generator>
@@ -53,7 +53,7 @@
 
            If left empty, jOOQ will generate all available schemata. See the
            manual'second next section to learn how to generate several schemata -->
-      <inputSchema>modeldb</inputSchema>
+      <inputSchema>modeldb_test</inputSchema>
     </database>
 
     <generate>
@@ -63,7 +63,7 @@
     <target>
       <!-- The destination package of your generated classes (within the
            destination directory) -->
-      <packageName>jooq.mysql.gen</packageName>
+      <packageName>jooq.sqlite.gen</packageName>
 
       <!-- The destination directory of your generated classes -->
       <directory>../src/main/java</directory>

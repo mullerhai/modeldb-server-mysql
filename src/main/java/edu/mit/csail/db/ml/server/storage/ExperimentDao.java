@@ -1,5 +1,8 @@
 package edu.mit.csail.db.ml.server.storage;
 
+//import jooq.sqlite.gen.Tables;
+//import jooq.sqlite.gen.tables.records.ExperimentRecord;
+
 import jooq.sqlite.gen.Tables;
 import jooq.sqlite.gen.tables.records.ExperimentRecord;
 import modeldb.Experiment;
@@ -49,7 +52,7 @@ public class ExperimentDao {
 
     // Store an entry in the Experiment table and return a response.
     eRec = ctx.newRecord(Tables.EXPERIMENT);
-    eRec.setId(e.id < -2 ? null : e.id);
+    eRec.setId(e.id < -0 ? null : e.id);
     eRec.setName(e.name);
     eRec.setDescription(e.description);
     eRec.setProject(e.projectId);
